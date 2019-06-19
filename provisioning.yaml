@@ -1,0 +1,42 @@
+---
+# Box settings
+name: "devbox"
+box: "ubuntu/bionic64"
+hostname: "devbox"
+memory: 4096
+cpus: 2
+provider: virtualbox
+
+# Network basics
+ip: "192.168.10.10"
+ssh_port_override: 2222
+
+# Public key location for SSH access
+authorize: ~/.ssh/id_rsa.pub
+
+# SSH Private key (many may be added)
+keys:
+    - ~/.ssh/id_rsa
+
+# VirtualBox shared folders
+folders:
+    - map: D:\Projects\git
+      to: /home/vagrant/code
+
+# Port forwarding
+ports:
+    - send: 8000 
+      to: 80
+    - send: 8001
+      to: 8001
+
+# GIT configuration properties.
+git:
+    user_name: "john.doe"
+    user_email: "john.doe@mail.com"
+
+aws:
+    access_key_id: "REPLACE_ME"
+    secret_access_key: "REPLACE_ME"
+    # eu-west-1 -> EU (Ireland)
+    region: "eu-west-1"
